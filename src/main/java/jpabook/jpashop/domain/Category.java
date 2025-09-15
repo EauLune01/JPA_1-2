@@ -3,12 +3,13 @@ package jpabook.jpashop.domain;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Data
-public class Category {
+class Category {
     @Id @GeneratedValue
     @Column(name="category_id")
     private Long id;
@@ -33,4 +34,9 @@ public class Category {
     private List<Category> child=new ArrayList<>();
 
 
+    //==연관관계 메서드==//
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 }
