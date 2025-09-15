@@ -1,0 +1,6 @@
+/**
+ * @ManyToOne(fetch = FetchType.LAZY): @ManyToOne, @OneToOne은 기본이 EAGER라 꼭 LAZY 명시하는 게 좋음
+ * @OneToOne(fetch = FetchType.LAZY): @ManyToOne, @OneToOne은 기본이 EAGER라 꼭 LAZY 명시하는 게 좋음
+ * @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY): @OneToMany, @ManyToMany는 기본이 LAZY라 안 써도 되지만 가독성 위해 명시하기도 함
+ * @ManyToMany(fetch = FetchType.LAZY): @OneToMany, @ManyToMany는 기본이 LAZY라 안 써도 되지만 가독성 위해 명시하기도 함
+ */
