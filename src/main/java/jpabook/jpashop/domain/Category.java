@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Data
-class Category {
+public class Category {
     @Id @GeneratedValue
     @Column(name="category_id")
     private Long id;
