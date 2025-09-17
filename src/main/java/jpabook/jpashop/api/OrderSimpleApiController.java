@@ -30,6 +30,7 @@ public class OrderSimpleApiController {
     private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
     @GetMapping("/api/v1/simple-orders")
+    //영속성 컨텍스트 안에서 Lazy Loading이 수행
     public List<Order> ordersV1(){
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
         for (Order order: all){

@@ -106,14 +106,65 @@ public class OrderRepository {
         return query.getResultList();
     }
 
-    //fetch join 사용, inner join
-    //재사용 굿
+    /**
+     * Order와 그에 관련된 Member 및 Delivery 데이터를 Fetch Join으로 한 번에 조회
+     * inner join, 재사용 굿
+     * */
     public List<Order> findAllWithMemberDelivery() {
         return em.createQuery(
-                    "select o from Order o" +
-                        "join fetch o.member m"+
-                        "join fetch o.delivery d",Order.class
-        ).getResultList();
+                        "select o from Order o" +
+                                " join fetch o.member m" +  // Order와 Member를 JOIN FETCH
+                                " join fetch o.delivery d",  // Order와 Delivery를 JOIN FETCH
+                        Order.class)
+                .getResultList();
+    }
+
+    /**
+     * findAllwithItem():
+     *
+     * 이 메서드는 Order와 그와 관련된 Member, Delivery, OrderItem, Item 정보를 모두 한 번에 조회합니다.
+     *
+     * distinct로 중복된 Order 객체를 제거합니다.
+     *
+     * findAllWithMemberDelivery():
+     *
+     * 이 메서드는 Order, Member, Delivery 데이터를 조회하면서 페이징 처리를 적용합니다.
+     *
+     * offset과 limit을 사용하여 데이터의 일부만을 조회합니다.
+     *
+     */
+
+    /**
+     * Order와 관련된 Member, Delivery, OrderItem, Item을 Fetch Join 방식으로 모두 조회
+     * Order와 관련된 Member, Delivery는 기존과 동일하게 join fetch를 사용하여 즉시 로딩
+     * Order와 OrderItem을 join fetch하여 Order 객체에 연결된 OrderItem들을 한 번에 가져옴
+     * OrderItem과 관련된 Item도 join fetch하여 OrderItem 객체와 관련된 Item도 즉시 로딩
+     * distinct 키워드는 중복된 Order 객체를 제거하기 위해 사용
+     * */
+    public List<Order> findAllwithItem() {
+        return em.createQuery(
+                        "select distinct o from Order o" +  // 중복된 Order를 제거
+                                " join fetch o.member m" +  // Order와 Member를 JOIN FETCH
+                                " join fetch o.delivery d" + // Order와 Delivery를 JOIN FETCH
+                                " join fetch o.orderItems oi" + // Order와 OrderItems를 JOIN FETCH
+                                " join fetch oi.item i", Order.class) // OrderItems와 Item을 JOIN FETCH
+                .getResultList();
+    }
+
+    /**
+     * Order, Member, Delivery 데이터를 조회하면서 페이징 처리(offset과 limit)를 적용
+     * 기본적으로 Order, Member, Delivery 엔티티를 join fetch를 사용하여 조회
+     * setFirstResult(offset)는 결과 목록에서 시작할 인덱스를 설정
+     * setMaxResults(limit)는 한 번에 가져올 최대 결과 수를 설정
+     * */
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +  // Order와 Member를 JOIN FETCH
+                                " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)  // 페이징 처리: 첫 번째 결과의 인덱스 (오프셋)
+                .setMaxResults(limit)    // 페이징 처리: 한 번에 반환할 최대 결과 개수
+                .getResultList();
     }
 
 }
