@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update #create, update 중 개발에 따라 선택
     properties:
       hibernate:
         format_sql: true

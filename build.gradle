@@ -34,10 +34,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-/* Jakarta Validation 의존성 추가 */
+	/* Jakarta Validation 의존성 추가 */
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
 	implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
 	implementation 'org.glassfish:jakarta.el:4.0.0'
+
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
 }
 
 tasks.named('test') {
