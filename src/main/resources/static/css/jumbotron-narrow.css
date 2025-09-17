@@ -1,0 +1,101 @@
+/* Body padding for spacing */
+body {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: Arial, sans-serif; /* Font family added for better readability */
+}
+
+/* General padding for mobile-first views */
+.header, .marketing, .footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Header section with subtle border */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+
+/* Header heading styling */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 50px; /* Increased line-height for better spacing */
+  font-size: 28px;  /* Slightly larger font size */
+  font-weight: bold; /* Added bold for emphasis */
+  padding-bottom: 15px;
+}
+
+/* Footer styling */
+.footer {
+  padding-top: 20px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+  font-size: 14px; /* Reduced font size for a more subtle footer */
+  text-align: center; /* Centered the footer text */
+}
+
+/* Custom container width for responsive layouts */
+@media (min-width: 768px) {
+  .container {
+    max-width: 740px; /* Slightly larger max width for better spacing */
+  }
+}
+
+.container-narrow > hr {
+  margin: 40px 0;
+}
+
+/* Jumbotron section with centered content and button styling */
+.jumbotron {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8; /* Light background for the jumbotron */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+  font-size: 22px;
+  padding: 16px 28px;
+  border-radius: 50px; /* Rounded buttons for modern appeal */
+  background-color: #007bff; /* Updated background color */
+  color: white;
+  text-transform: uppercase; /* Uppercase text for the button */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.jumbotron .btn:hover {
+  background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+/* Marketing section spacing */
+.marketing {
+  margin: 50px 0;
+  font-size: 16px; /* Adjusted font size for better readability */
+}
+
+.marketing p + h4 {
+  margin-top: 20px;
+}
+
+/* Media query for tablets and larger screens */
+@media screen and (min-width: 768px) {
+  /* Remove the padding for larger screens */
+  .header, .marketing, .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 40px; /* Added more spacing for larger screens */
+  }
+
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: none;
+  }
+}
+
