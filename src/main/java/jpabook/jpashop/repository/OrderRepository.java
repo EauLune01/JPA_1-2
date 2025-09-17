@@ -3,6 +3,7 @@ package jpabook.jpashop.repository;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -34,7 +35,7 @@ public class OrderRepository {
     /**
      * JPQL을 이용한 주문 조회 (동적 쿼리 - 문자열 처리)
      */
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
         // 기본 JPQL
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
